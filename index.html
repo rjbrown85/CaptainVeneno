@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Captain Veneno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;500;600&family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
     --black:#0a0a0b;
@@ -17,9 +15,9 @@
     --ink:#e9e9ea;
     --muted:#9a9a9f;
     --line:#26262b;
-    --head:'Comic Sans MS', 'Comic Sans', cursive;
-    --sub:'Comic Sans MS', 'Comic Sans', cursive;
-    --body:'Comic Sans MS', 'Comic Sans', cursive;
+    --head:'Comic Neue', 'Comic Sans MS', 'Comic Sans', sans-serif;
+    --sub:'Comic Neue', 'Comic Sans MS', 'Comic Sans', sans-serif;
+    --body:'Comic Neue', 'Comic Sans MS', 'Comic Sans', sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -72,6 +70,19 @@
     padding:7px 11px;border-radius:3px;transition:.15s;
   }
   .nav-links a:hover{color:var(--black);background:var(--venom)}
+
+  @media(max-width:768px){
+    .nav-inner {
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+    }
+    .nav-links {
+      justify-content: center;
+      gap: 4px;
+    }
+  }
 
   /* ---------- Sections ---------- */
   section{padding:96px 22px;border-bottom:1px solid var(--line)}
@@ -131,8 +142,16 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
   .three{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
   .four{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-  @media(max-width:820px){
-    .two,.three,.four{grid-template-columns:1fr}
+
+  @media(max-width:1024px){
+    .two{gap:28px}
+    .three{grid-template-columns:repeat(2,1fr);gap:20px}
+    .four{grid-template-columns:repeat(2,1fr);gap:16px}
+  }
+
+  @media(max-width:640px){
+    .two,.three,.four{grid-template-columns:1fr;gap:20px}
+    .hero h1{font-size:clamp(44px, 11vw, 90px)}
   }
 
   /* ---------- Cards ---------- */
@@ -169,7 +188,9 @@
   /* ---------- Gallery ---------- */
   .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
   .gallery .ph{min-height:150px}
-  @media(max-width:820px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:1024px){.gallery{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:768px){.gallery{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:480px){.gallery{grid-template-columns:1fr}}
 
   /* ---------- Merch ---------- */
   .merch .ph{min-height:220px;margin-bottom:14px}
@@ -192,22 +213,6 @@
 
   .section-tag{font-family:var(--sub);font-size:12px;letter-spacing:.3em;
     text-transform:uppercase;color:#3f3f47;margin-bottom:6px}
-
-  /* ---------- Paper Pete Helper ---------- */
-  .paper-pete {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 200px;
-    height: auto;
-    z-index: 1000;
-    pointer-events: auto;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-  }
-  .paper-pete:hover {
-    transform: scale(1.1) rotate(5deg);
-  }
 </style>
 </head>
 <body>
@@ -234,9 +239,16 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="home" style="border-bottom:none">
   <div class="wrap">
-    <span class="pill"><b>Definitely</b> not Radiohead</span>
-    <h1>CAPTAIN<br><span class="x">VENENO</span></h1>
-    <p class="tagline">Heavy, hard alt-rock brewed in feedback, dread, and bad decisions.</p>
+    <div class="two" style="align-items: center;">
+      <div>
+        <span class="pill"><b>Definitely</b> not Radiohead</span>
+        <h1>CAPTAIN<br><span class="x">VENENO</span></h1>
+        <p class="tagline">Heavy, hard alt-rock brewed in feedback, dread, and bad decisions.</p>
+      </div>
+      <div style="background:#fff;border:2px solid var(--line);border-radius:8px;padding:12px;display:flex;align-items:center;justify-content:center;max-width:450px;width:100%;margin:20px auto 0;">
+        <img src="band-logo.png" alt="Captain Veneno Logo" fetchpriority="high" style="width:100%;height:auto;object-fit:contain;display:block">
+      </div>
+    </div>
   </div>
 </section>
 
@@ -442,10 +454,6 @@
   <div class="brand">CAPTAIN <span style="color:var(--venom)">VENENO</span></div>
   <p>&copy; 2026 Captain Veneno &middot; All rights reserved</p>
 </footer>
-
-<a href="#contact" class="paper-pete" title="Ask Pete for help!">
-  <img src="not_clippy.png" alt="Paper Pete Assistant" style="width:100%;height:auto;display:block">
-</a>
 
 </body>
 </html>
